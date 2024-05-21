@@ -10,3 +10,6 @@ map("n", "<Right>", '<cmd>echo "Arrow disabled, use l instead"<cr>', { desc = "M
 
 map("v", "J", ":m+1<cr>", { desc = "Move line to down" })
 map("v", "K", ":m-2<cr>", { desc = "Move line to up" })
+
+map("n", "dd", '"_dd<cr>', { desc = "Delete without cut off" })
+map("v", "d", '"_d<cr>', { desc = "Delete without cut off" })
