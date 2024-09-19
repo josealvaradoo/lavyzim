@@ -1,3 +1,4 @@
+-- Highlight the current chunk/block of code in a file
 return {
   {
     "shellRaining/hlchunk.nvim",

@@ -1,3 +1,4 @@
+-- Enable a markdown previewer in neovim using a local node server
 return {
   {
     "iamcco/markdown-preview.nvim",

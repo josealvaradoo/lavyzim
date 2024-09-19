@@ -1,3 +1,4 @@
+-- A config for flutter development
 return {
   {
     "akinsho/flutter-tools.nvim",

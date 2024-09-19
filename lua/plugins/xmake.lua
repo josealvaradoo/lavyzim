@@ -1,3 +1,5 @@
+-- Build system file that is used to build projects on c++
+
 local format_group = vim.api.nvim_create_augroup("FormatGroup", { clear = true })
 
 -- Function to disable autoformatting for specific files
