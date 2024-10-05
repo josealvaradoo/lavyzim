@@ -3,6 +3,8 @@
     "lazyvim.plugins.extras.coding.copilot-chat",
     "lazyvim.plugins.extras.editor.harpoon2",
     "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.angular",
+    "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.vscode"
   ],
