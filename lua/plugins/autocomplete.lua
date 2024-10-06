@@ -3,6 +3,8 @@ return {
   -- Supermaven is a fastest alternative to Github Copilot
   {
     "supermaven-inc/supermaven-nvim",
+    lazy = true,
+    event = "VeryLazy",
     config = function()
       require("supermaven-nvim").setup({})
     end,
