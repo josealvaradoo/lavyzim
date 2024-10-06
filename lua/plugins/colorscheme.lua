@@ -6,7 +6,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "chocolatier",
+      colorscheme = "catppuccin",
+      transparent = true,
     },
   },
 }
