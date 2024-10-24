@@ -13,3 +13,7 @@ map("v", "K", ":m-2<cr>", { desc = "Move line to up" })
 
 map("n", "dd", '"_dd<cr>', { desc = "Delete without cut off" })
 map("v", "d", '"_d<cr>', { desc = "Delete without cut off" })
+
+map("n", "gco", ":GitConflictChooseOurs<cr>", { desc = "Choose ours" })
+map("n", "gct", ":GitConflictChooseTheirs<cr>", { desc = "Choose theirs" })
+map("n", "gcb", ":GitConflictChooseBoth<cr>", { desc = "Choose base" })
