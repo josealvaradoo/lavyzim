@@ -10,10 +10,12 @@ return {
       opts.defaults = {
         path_display = { "smart" }, -- Display paths smartly
         file_ignore_patterns = {
-          "node_modules",
-          "package-lock.json",
-          "yarn.lock",
-          "bun.lockb",
+          "^node_modules/.*",
+          "%.next",
+          "%.git/",
+          "package%-lock%.json",
+          "yarn%.lock",
+          "bun%.lockb",
         },
         prompt_prefix = "> ", -- Set the prompt to just ">"
         layout_strategy = "horizontal", -- Use horizontal layout
@@ -44,44 +46,50 @@ return {
       -- Add hidden files and no-ignore options to file search and live_grep
       opts.pickers = {
         find_files = {
-          find_command = { "rg", "--files", "--hidden", "--no-ignore", "--iglob", "!.git/" },
+          find_command = { "rg", "--files", "--hidden", "--iglob", "!.git/" },
         },
         live_grep = {
           additional_args = function()
-            return { "--hidden", "--no-ignore" }
+            return { "--hidden" }
           end,
         },
       }
       return opts
     end,
 
-    dependencies = {
-      {
-        -- Plugin: telescope-live-grep-args.nvim
-        -- URL: https://github.com/nvim-telescope/telescope-live-grep-args.nvim
-        -- Description: Adds live grep arguments to Telescope.
-        "nvim-telescope/telescope-live-grep-args.nvim",
-        version = "^1.0.0",
-        config = function()
-          require("telescope").load_extension("live_grep_args")
-        end,
-      },
-      {
-        -- Plugin: telescope-fzf-native.nvim
-        -- URL: https://github.com/nvim-telescope/telescope-fzf-native.nvim
-        -- Description: FZF sorter for Telescope written in C.
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make", -- Build the plugin using make
-        config = function()
-          require("telescope").load_extension("fzf")
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("telescope").setup(opts)
-
-      -- Keybinding to open live grep with arguments
-      vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-    end,
+    --   dependencies = {
+    --     {
+    --       -- Plugin: telescope-live-grep-args.nvim
+    --       -- URL: https://github.com/nvim-telescope/telescope-live-grep-args.nvim
+    --       -- Description: Adds live grep arguments to Telescope.
+    --       "nvim-telescope/telescope-live-grep-args.nvim",
+    --       version = "^1.0.0",
+    --       config = function(_, opts)
+    --         require("telescope").load_extension("live_grep_args")
+    --       end,
+    --     },
+    --     {
+    --       -- Plugin: telescope-fzf-native.nvim
+    --       -- URL: https://github.com/nvim-telescope/telescope-fzf-native.nvim
+    --       -- Description: FZF sorter for Telescope written in C.
+    --       "nvim-telescope/telescope-fzf-native.nvim",
+    --       build = "make", -- Build the plugin using make
+    --       config = function()
+    --         require("telescope").load_extension("fzf")
+    --       end,
+    --     },
+    --   },
+    --   config = function(_, opts)
+    --     require("telescope").setup(opts)
+    --     local map = LazyVim.safe_keymap_set
+    --
+    --     -- Keybinding to open live grep with arguments
+    --     map(
+    --       "n",
+    --       "<leader>fg",
+    --       ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+    --       { desc = "Live Grep with arguments" }
+    --     )
+    --   end,
   },
 }
