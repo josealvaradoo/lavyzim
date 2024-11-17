@@ -1,10 +1,10 @@
 -- This file contains the configuration for various UI-related plugins in Neovim.
 
 return {
-  -- Plugin: noice.nvim
-  -- URL: https://github.com/folke/noice.nvim
-  -- Description: A Neovim plugin for enhancing the command-line UI.
   {
+    -- Plugin: noice.nvim
+    -- URL: https://github.com/folke/noice.nvim
+    -- Description: A Neovim plugin for enhancing the command-line UI.
     "folke/noice.nvim",
     config = function()
       require("noice").setup({
@@ -28,10 +28,10 @@ return {
       })
     end,
   },
-  -- Plugin: lualine.nvim
-  -- URL: https://github.com/nvim-lualine/lualine.nvim
-  -- Description: A blazing fast and easy to configure Neovim statusline plugin.
   {
+    -- Plugin: lualine.nvim
+    -- URL: https://github.com/nvim-lualine/lualine.nvim
+    -- Description: A blazing fast and easy to configure Neovim statusline plugin.
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy", -- Load this plugin on the 'VeryLazy' event
     requires = { "nvim-tree/nvim-web-devicons", opt = true }, -- Optional dependency for icons
@@ -50,10 +50,10 @@ return {
       },
     },
   },
-  -- Plugin: incline.nvim
-  -- URL: https://github.com/b0o/incline.nvim
-  -- Description: A Neovim plugin for showing the current filename in a floating window.
   {
+    -- Plugin: incline.nvim
+    -- URL: https://github.com/b0o/incline.nvim
+    -- Description: A Neovim plugin for showing the current filename in a floating window.
     "b0o/incline.nvim",
     event = "BufReadPre", -- Load this plugin before reading a buffer
     priority = 1200, -- Set the priority for loading this plugin
@@ -73,6 +73,67 @@ return {
           return { { icon, guifg = color }, { " " }, { filename } } -- Return the rendered content
         end,
       })
+    end,
+  },
+  -- {
+  --   -- Plugin: alpha-nvim
+  --   -- URL: https://github.com/goolord/alpha-nvim
+  --   -- Description: A plugin for welcome screen of Neovim.
+  --   "goolord/alpha-nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     local startify = require("alpha.themes.startify")
+  --     -- available: devicons, mini, default is mini
+  --     -- if provider not loaded and enabled is true, it will try to use another provider
+  --     startify.file_icons.provider = "devicons"
+  --     require("alpha").setup(startify.config)
+  --   end,
+  -- },
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter", -- Load this plugin on VimEnter event
+    opts = function(_, opts)
+      --    local logo = [[
+      -- ⠀⠀⠀⠀⠀⠀⠰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣤⣶⣤⣤⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠛⠛⠛⠛⠻⠿⠿⣿⣿⣷⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡀⣀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣷⣶⣦⣀⡀⠀⠀⠈⠛⢿⣿⣶⣄⠀⠀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⢀⣾⣿⡿⠋⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡐⢆⠲⣈⠭⣉⠛⠿⢿⣿⣷⣤⡀⠀⠀⠙⢿⣿⣧⡀⠀⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⣰⣿⡿⠋⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡜⣌⠳⣌⠲⣡⢋⡜⢢⢍⠻⢿⣿⣷⣄⠀⠀⠙⣿⣿⣆⠀⠀⠀⠀
+      -- ⠀⠀⠀⣰⣿⡿⠁⠀⠀⣴⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡒⣌⠳⣌⠓⢦⠓⡜⢣⢎⢣⡃⢟⢿⣿⣦⠀⠀⠈⢻⣿⣆⠀⠀⠀
+      -- ⠀⠀⣸⣿⡿⠀⠀⢀⣾⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡱⣊⠵⣊⡝⢎⡹⡜⢣⢎⡳⢜⡣⢎⣻⣿⣷⡀⠀⠈⢿⣿⣇⠀⠀
+      -- ⠀⢠⣿⣿⠃⠀⠀⣾⣿⢏⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡱⣍⢮⡑⣎⠧⣓⡜⣣⠞⡜⣬⢱⢫⡔⣻⣿⣧⡀⠀⠈⣿⣿⡄⠀
+      -- ⠀⣼⣿⡟⠀⠀⣸⣿⡿⣸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡱⢎⠶⣙⢦⡛⡴⣙⢦⡛⡜⢦⣋⠶⡹⣔⣻⣿⣇⠀⠀⢸⣿⣷⠀
+      -- ⠀⣿⣿⡆⠀⠀⣿⣿⣎⢳⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣱⢫⡜⣣⢏⡵⢫⡜⣣⢞⡱⡹⣌⢧⡙⢧⢺⣿⡿⠀⠀⢸⣿⡿⠀
+      -- ⠀⢹⣿⣿⠀⠀⠘⣿⣿⣪⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⢆⡳⣜⡱⢎⡜⣣⢞⡱⢎⡵⠳⡜⢦⡛⣼⣿⣿⠇⠀⠀⣾⣿⡟⠀
+      -- ⠀⠀⣿⣿⣇⠀⠀⠹⣿⣷⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⢎⠵⣪⢜⢣⠞⣡⢎⡵⢋⡴⢫⡜⡣⣝⣾⣿⠟⠀⠀⣰⣿⡿⠀⠀
+      -- ⠀⠀⠈⢿⣿⡄⠀⠀⠹⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠎⡵⢢⢫⡜⢎⡵⢊⠶⣩⢒⣇⡚⣵⣿⣿⠏⠀⠀⣠⣿⣿⠃⠀⠀
+      -- ⠀⠀⠀⠘⢿⣿⣤⠀⠀⠈⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡹⢜⣣⠳⡜⣣⠞⣩⠞⣡⠳⣼⣾⣿⡿⠁⠀⠀⣴⣿⡿⠁⠀⠀⠀
+      -- ⠀⠀⠀⠀⠈⠻⣿⣧⣀⠠⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣼⣧⣶⣽⣼⣵⣮⣵⣯⣶⣿⣿⣿⣯⣤⣤⣤⣾⣿⣿⣥⣤⣤⣄⡀
+      -- ⠀⠀⠀⠀⠀⠀⠘⢿⣿⣧⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⣿⣿⣿⠟⠁
+      -- ⠀⠀⠀⠀⠀⠀⠀⠀⠉⣻⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠿⠋⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠋⠀⠀⠀⠀
+      -- ⠀⠀⠀⠀⠀⠀⠰⣾⣟⣾⣽⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⣿⣻⣟⡿⣿⣻⠝⠁⠀⠀⠀⠀⠀
+      -- ]]
+      local logo = [[
+ ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▒        ▒▓▓▓▓▒
+ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▓       ▒▓▓▓▓▒ 
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒      ▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▒  
+                      ▓▓▓▓▓▓▓▓▓▓▓▓▓▒    
+                        ▒▒▒▒▒▒▒▒        
+ ▒▒▒▒▒▒                                 
+▓▓▓▓▓▓▓                                 
+▓▓▓▓▓▓▓▒               ▒▒▒▒▒▒▒          
+▒▓▓▓▓▓▓▓▒            ▒▓▓▓▓▓▓▓▒          
+ ▒▓▓▓▓▓▓▓▓▓▒▒   ▒▒▒▓▓▓▓▓▓▓▓▒            
+  ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒              
+    ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                 
+      ]]
+      logo = string.rep("\n", 5) .. logo .. "\n\n\n" -- Add padding to the logo
+      opts.config.header = vim.split(logo, "\n") -- Set the header for the dashboard
+      vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#ffffff" })
     end,
   },
 }
