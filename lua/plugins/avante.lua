@@ -1,3 +1,5 @@
+---@class AvanteConflictHighlights
+
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
