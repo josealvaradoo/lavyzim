@@ -2,7 +2,8 @@
   "extras": [
     "lazyvim.plugins.extras.ai.supermaven",
     "lazyvim.plugins.extras.formatting.prettier",
-    "lazyvim.plugins.extras.lang.angular"
+    "lazyvim.plugins.extras.lang.angular",
+    "lazyvim.plugins.extras.linting.eslint"
   ],
   "news": {
     "NEWS.md": "7429"
