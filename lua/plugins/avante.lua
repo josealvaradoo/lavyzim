@@ -11,6 +11,7 @@ return {
     auto_suggestions_provider = "gemini", -- Recommend using Copilot
     gemini = {
       temperature = 0,
+      model = "gemini-2.0-flash-exp",
     },
     behaviour = {
       auto_suggestions = false, -- Experimental stage
