@@ -75,27 +75,4 @@ return {
       })
     end,
   },
-  -- {
-  --   "nvimdev/dashboard-nvim",
-  --   event = "VimEnter", -- Load this plugin on VimEnter event
-  --   opts = function(_, opts)
-  --       local logo = [[
-  --  ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▒        ▒▓▓▓▓▒
-  --  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▓       ▒▓▓▓▓▒
-  -- ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒      ▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▒
-  --                       ▓▓▓▓▓▓▓▓▓▓▓▓▓▒
-  --                         ▒▒▒▒▒▒▒▒
-  --  ▒▒▒▒▒▒
-  -- ▓▓▓▓▓▓▓
-  -- ▓▓▓▓▓▓▓▒               ▒▒▒▒▒▒▒
-  -- ▒▓▓▓▓▓▓▓▒            ▒▓▓▓▓▓▓▓▒
-  --  ▒▓▓▓▓▓▓▓▓▓▒▒   ▒▒▒▓▓▓▓▓▓▓▓▒
-  --   ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
-  --     ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒
-  --       ]]
-  --       logo = string.rep("\n", 5) .. logo .. "\n\n\n" -- Add padding to the logo
-  --       opts.config.header = vim.split(logo, "\n") -- Set the header for the dashboard
-  --       vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#ffffff" })
-  --     end,
-  --   },
 }
