@@ -42,12 +42,12 @@ return {
         },
       })
       -- [[ Configure Flutter tools]]
-      vim.keymap.set(
-        "n",
-        "<leader>r",
-        require("telescope").extensions.flutter.commands,
-        { desc = "Open command Flutter" }
-      )
+      -- vim.keymap.set(
+      --   "n",
+      --   "<leader>r",
+      --   require("telescope").extensions.flutter.commands,
+      --   { desc = "Open command Flutter" }
+      -- )
       vim.keymap.set("n", "<leader>br", function()
         vim.cmd("20new")
         vim.cmd("te fvm flutter packages pub run build_runner build --delete-conflicting-outputs")
