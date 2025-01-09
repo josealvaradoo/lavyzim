@@ -7,18 +7,28 @@ return {
   version = false, -- set this if you want to always pull the latest change
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = "gemini", -- Recommend using Claude
-    auto_suggestions_provider = "gemini", -- Recommend using Copilot
+    provider = "copilot", -- Recommend using Claude
+    auto_suggestions_provider = "copilot", -- Recommend using Copilot
+    copilot = {
+      model = "claude-3.5-sonnet",
+    },
     gemini = {
       temperature = 0,
       model = "gemini-2.0-flash-exp",
     },
     behaviour = {
-      auto_suggestions = false, -- Experimental stage
+      auto_suggestions = true, -- Experimental stage
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
+    },
+    dual_boost = {
+      enabled = true,
+      first_provider = "copilot",
+      second_provider = "gemini",
+      prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
+      timeout = 60000, -- Timeout in milliseconds
     },
     mappings = {
       --- @class AvanteConflictMappings
