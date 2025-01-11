@@ -22,4 +22,11 @@ return {
     "mg979/vim-visual-multi",
     enabled = false, -- Disable this plugin
   },
+  {
+    -- Plugin: neo-tree.nvim
+    -- URL: https://github.com/nvim-neo-tree/neo-tree.nvim
+    -- Description: Neovim plugin to manage the file system and other tree like structures.
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
+  },
 }
