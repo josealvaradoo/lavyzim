@@ -8,8 +8,7 @@ return {
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
     provider = "copilot", -- Recommend using Claude
-    auto_suggestions_provider = "copilot", -- Recommend using Copilot
-    copilot = {},
+    auto_suggestions_provider = "gemini", -- Recommend using Copilot
     gemini = {
       temperature = 0,
       model = "gemini-2.0-flash-exp",
