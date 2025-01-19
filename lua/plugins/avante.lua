@@ -7,8 +7,12 @@ return {
   version = false, -- set this if you want to always pull the latest change
   opts = {
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = "copilot", -- Recommend using Claude
+    provider = "claude", -- Recommend using Claude
     auto_suggestions_provider = "gemini", -- Recommend using Copilot
+    copilot = {
+      temperature = 0,
+      model = "gpt-4o-2024-08-06",
+    },
     gemini = {
       temperature = 0,
       model = "gemini-2.0-flash-exp",
@@ -22,8 +26,8 @@ return {
     },
     dual_boost = {
       enabled = false,
-      first_provider = "copilot",
-      second_provider = "gemini",
+      first_provider = "claude",
+      second_provider = "copilot",
       prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
       timeout = 60000, -- Timeout in milliseconds
     },
