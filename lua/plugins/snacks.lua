@@ -77,7 +77,7 @@ return {
       },
     },
     init = function()
-      vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#ffffff" })
+      vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#575279" })
     end,
   },
 }
