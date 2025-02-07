@@ -83,6 +83,40 @@ return {
     name = "rose-pine",
     config = function()
       require("rose-pine").setup({
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "moon", -- main, moon, or dawn
+        dim_inactive_windows = false,
+        extend_background_behind_borders = true,
+        groups = {
+          border = "muted",
+          link = "iris",
+          panel = "surface",
+
+          error = "love",
+          hint = "iris",
+          info = "foam",
+          note = "pine",
+          todo = "rose",
+          warn = "gold",
+
+          git_add = "foam",
+          git_change = "rose",
+          git_delete = "love",
+          git_dirty = "rose",
+          git_ignore = "muted",
+          git_merge = "iris",
+          git_rename = "pine",
+          git_stage = "iris",
+          git_text = "rose",
+          git_untracked = "subtle",
+
+          h1 = "iris",
+          h2 = "foam",
+          h3 = "rose",
+          h4 = "gold",
+          h5 = "pine",
+          h6 = "foam",
+        },
         palette = {
           main = {
             _nc = "#16141f",
@@ -122,6 +156,7 @@ return {
             highlight_low = "#2a283e",
             highlight_med = "#44415a",
             highlight_high = "#56526e",
+            FzfLuaBorder = "#56526e",
             none = "NONE",
           },
           dawn = {
@@ -151,7 +186,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine-moon",
+      colorscheme = "rose-pine",
       transparent = true,
     },
   },

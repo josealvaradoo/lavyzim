@@ -76,8 +76,6 @@ return {
         desc = "Toggle zoom",
       },
     },
-    init = function()
-      vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#575279" })
-    end,
+    init = function() end,
   },
 }
