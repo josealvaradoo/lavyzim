@@ -1,10 +1,17 @@
 return {
-  -- A git tool in neovim using commands
-  { "tpope/vim-fugitive", name = "fugitive", lazy = true, cmd = "G" },
+  {
+    -- Plugin: lewis6991/gitsigns.nvim
+    -- URL: https://github.com/lewis6991/gitsigns.nvim
+    -- Description: Provides Git integration for Neovim.
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup({
+        on_attach = function()
+          local map = LazyVim.safe_keymap_set
 
-  -- Visualise and resolve merge conflicts in neovim
-  { "akinsho/git-conflict.nvim", name = "git-conflict", version = "*", config = true, lazy = true, event = "VeryLazy" },
-
-  -- Shows the git difference in different buffers
-  -- { "sindrets/diffview.nvim", name = "diffview", cmd = "DiffviewOpen" },
+          map("n", "<leader>gb", ":Gitsigns blame<cr>", { desc = "Git blame line" })
+        end,
+      })
+    end,
+  },
 }
