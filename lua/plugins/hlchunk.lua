@@ -10,8 +10,8 @@ return {
           enable = true,
           priority = 15,
           style = {
-            { fg = "#B3FFDD" }, -- #806d9c
-            { fg = "#c21f30" }, -- #c21f30
+            { fg = "#56635f" },
+            { fg = "#543A48" },
           },
           use_treesitter = true,
           chars = {
