@@ -17,7 +17,6 @@ return {
     -- URL: https://github.com/ibhagwan/fzf-lua
     -- Description: Lua bindings for fzf
     "ibhagwan/fzf-lua",
-    -- optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
     -- or if using mini.icons/mini.nvim
     -- dependencies = { "echasnovski/mini.icons" },
@@ -48,9 +47,10 @@ return {
   {
     -- Plugin: mini.hipatterns
     -- URL: https://github.com/echasnovski/mini.hipatterns
-    -- Description: Provides highlighter patterns for various text patterns.
+    -- Description: Provides highlighter patterns for various text patterns like colors, dates, etc.
     "echasnovski/mini.hipatterns",
-    event = "BufReadPre", -- Load the plugin before reading a buffer
+    event = "BufReadPre",
+    ---@module 'mini.hipatterns'
     opts = {
       highlighters = {
         hsl_color = {
