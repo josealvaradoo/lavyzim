@@ -11,6 +11,12 @@ return {
     -- Optional dependencies
     -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    config = function()
+      require("oil").setup()
+      local map = LazyVim.safe_keymap_set
+
+      map("n", "<leader>e", ":Oil<cr>", { desc = "Oil" })
+    end,
   },
   {
     -- Plugin: fzf-lua

@@ -29,6 +29,3 @@ map("n", "gcb", ":GitConflictChooseBoth<cr>", { desc = "Choose base" })
 
 -- Close all buffers but the current one
 map("n", "<leader>bq", '<Esc>:%bdelete|edit #|normal`"<Return>', { desc = "Delete other buffers but the current one" })
-
--- Oil
-map("n", "<leader>e", ":Oil<cr>", { desc = "Oil" })
