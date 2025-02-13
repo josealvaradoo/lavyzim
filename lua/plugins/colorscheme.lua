@@ -1,16 +1,34 @@
 -- Install and set colorschemes
 return {
-  { "qaptoR-nvim/chocolatier.nvim", config = true, lazy = false },
-  { "rose-pine/neovim", name = "rose-pine" },
   {
-    -- Plugin for the Catppuccin color scheme
+    -- Plugin: qaptoR-nvim/chocolatier.nvim
+    -- URL: https://github.com/qaptoR-nvim/chocolatier.nvim
+    -- Description: Provides a chocolatey-like theme for Neovim.
+    "qaptoR-nvim/chocolatier.nvim",
+    config = true,
+    lazy = true,
+    enabled = false,
+  },
+  {
+    -- Plugin: rose-pine/neovim
+    -- URL: https://github.com/rose-pine/neovim
+    -- Description: Provides a rose-pine theme for Neovim.
+    "rose-pine/neovim",
+    name = "rose-pine",
+    lazy = true,
+    enabled = false,
+  },
+  {
+    -- Plugin: catppuccin/nvim
+    -- URL: https://github.com/catppuccin/nvim
+    -- Description: Provides a catppuccin theme for Neovim.
     "catppuccin/nvim",
     name = "catppuccin",
     enabled = false,
-    lazy = false, -- Load this plugin immediately
+    lazy = true,
     opts = {
-      transparent_background = true, -- Enable transparent background
-      flavour = "mocha", -- Set the flavor of the color scheme
+      transparent_background = true,
+      flavour = "mocha",
     },
     integrations = {
       cmp = true, -- Enable integration with nvim-cmp
@@ -22,19 +40,19 @@ return {
         enabled = true, -- Enable mini plugin integration
         indentscope_color = "", -- Set indentscope color (empty means default)
       },
-      -- Additional plugin integrations can be found in the documentation
     },
   },
   {
-    -- Plugin for the Kanagawa color scheme
+    -- Plugin: rebelot/kanagawa.nvim
+    -- URL: https://github.com/rebelot/kanagawa.nvim
+    -- Description: Provides a kanagawa theme for Neovim.
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
     enabled = false,
     lazy = true,
-    priority = 1000, -- Load this plugin after all other plugins
     opts = {
-      transparent = true, -- Enable transparent background
-      theme = "dragon", -- Set the theme variant to 'dragon'
+      transparent = true,
+      theme = "dragon",
       overrides = function(colors)
         local theme = colors.theme
         return {
@@ -63,10 +81,13 @@ return {
     },
   },
   {
-    -- Plugin for the Everforest color scheme
+    -- Plugin: neanias/everforest-nvim
+    -- URL: https://github.com/neanias/everforest-nvim
+    -- Description: Provides a everforest theme for Neovim.
     "neanias/everforest-nvim",
-    version = false, -- Use the latest version
-    lazy = false, -- Load this plugin immediately
+    priority = 1000,
+    version = false,
+    lazy = false,
     config = function()
       require("everforest").setup({
         background = "hard", -- Set the background to 'hard'
@@ -74,18 +95,6 @@ return {
         -- transparent_background_level = 1, -- Uncomment to enable transparency
         diagnostic_text_highlight = true, -- Enable diagnostic text highlight
         diagnostic_virtual_text = "coloured", -- Set diagnostic virtual text to colored
-      })
-    end,
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-      require("rose-pine").setup({
-        variant = "moon", -- auto, main, moon, or dawn
-        dark_variant = "moon", -- main, moon, or dawn
-        dim_inactive_windows = false,
-        extend_background_behind_borders = true,
       })
     end,
   },
