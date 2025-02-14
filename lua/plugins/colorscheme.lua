@@ -88,13 +88,14 @@ return {
     priority = 1000,
     version = false,
     lazy = false,
+    ---@class Config
     config = function()
       require("everforest").setup({
-        background = "hard", -- Set the background to 'hard'
-        italis = true, -- Enable italics
-        -- transparent_background_level = 1, -- Uncomment to enable transparency
-        diagnostic_text_highlight = true, -- Enable diagnostic text highlight
-        diagnostic_virtual_text = "coloured", -- Set diagnostic virtual text to colored
+        background = "hard",
+        italis = true,
+        transparent_background_level = 0.9,
+        diagnostic_text_highlight = true,
+        diagnostic_virtual_text = "coloured",
       })
     end,
   },
@@ -102,7 +103,6 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "everforest",
-      transparent = false,
     },
   },
 }
