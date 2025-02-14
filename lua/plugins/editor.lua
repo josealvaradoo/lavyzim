@@ -8,9 +8,7 @@ return {
     ---@type oil.SetupOpts
     opts = {},
     enabled = true,
-    -- Optional dependencies
-    -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("oil").setup()
       local map = LazyVim.safe_keymap_set
@@ -24,8 +22,6 @@ return {
     -- Description: Lua bindings for fzf
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- or if using mini.icons/mini.nvim
-    -- dependencies = { "echasnovski/mini.icons" },
     opts = {
       defaults = {
         no_header = true,
