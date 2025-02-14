@@ -14,6 +14,8 @@ local header = [[
     ▒▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▒              
      ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                
        ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                   
+                           
+
                            ]]
 
 return {
@@ -33,6 +35,7 @@ return {
       statuscolumn = { enabled = true },
       words = { enabled = true },
       zen = { enabled = true },
+      image = { enabled = false },
       ---@class snacks.dashboard.Config
       dashboard = {
         enabled = true,
@@ -76,6 +79,8 @@ return {
         desc = "Toggle zoom",
       },
     },
-    init = function() end,
+    init = function()
+      vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#56635f" })
+    end,
   },
 }
