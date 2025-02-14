@@ -52,20 +52,7 @@ return {
     -- Description: A blazing fast and easy to configure Neovim statusline plugin.
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy", -- Load this plugin on the 'VeryLazy' event
-    requires = { "nvim-tree/nvim-web-devicons", opt = true }, -- Optional dependency for icons
-    opts = {
-      options = {
-        icons_enabled = true, -- Enable icons in the statusline
-      },
-      sections = {
-        lualine_a = {
-          {
-            "mode", -- Display the current mode
-            icon = "󱗞", -- Set the icon for the mode
-          },
-        },
-      },
-    },
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
   },
   {
     -- Plugin: incline.nvim

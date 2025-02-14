@@ -1,6 +1,7 @@
 {
   "extras": [
     "lazyvim.plugins.extras.ai.supermaven",
+    "lazyvim.plugins.extras.formatting.biome",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.angular",
     "lazyvim.plugins.extras.lang.docker",
@@ -19,4 +20,3 @@
   },
   "version": 8
 }
-
