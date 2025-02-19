@@ -9,7 +9,6 @@ return {
       local map = LazyVim.safe_keymap_set
 
       require("codecompanion").setup({
-        system_prompt = "You are a senior fullstack engineer.",
         strategies = {
           chat = {
             adapter = "qwen",
