@@ -4,7 +4,10 @@ return {
   -- Description: Code Companion is a plugin that provides a coding powered by IA feature.
   {
     "olimorris/codecompanion.nvim",
-    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
       local map = LazyVim.safe_keymap_set
 
@@ -24,10 +27,30 @@ return {
               env = {
                 url = "https://dashscope-intl.aliyuncs.com/compatible-mode",
                 api_key = "DASHSCOPE_API_KEY",
-                model = "qwen-plus",
+              },
+              schema = {
+                model = {
+                  default = "qwen-max", -- define llm model to be used
+                },
+                temperature = {
+                  order = 2,
+                  mapping = "parameters",
+                  type = "number",
+                  optional = true,
+                  default = 0,
+                },
               },
             })
           end,
+        },
+        display = {
+          chat = {
+            -- Change the default icons
+            icons = {
+              pinned_buffer = "📌",
+              watched_buffer = "👀 ",
+            },
+          },
         },
       })
 
@@ -40,11 +63,6 @@ return {
       -- Inline
       map("n", "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "Open a new IA prompter" })
     end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "zbirenbaum/copilot.lua",
-    },
   },
   -- Plugin: avante.nvim
   -- Repository: https://github.com/yetone/avante.nvim
