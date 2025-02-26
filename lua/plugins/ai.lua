@@ -1,8 +1,8 @@
 return {
-  -- Plugin: Code Companion
-  -- Repository: https://github.com/olimorris/codecompanion.nvim
-  -- Description: Code Companion is a plugin that provides a coding powered by IA feature.
   {
+    -- Plugin: Code Companion
+    -- Repository: https://github.com/olimorris/codecompanion.nvim
+    -- Description: Code Companion is a plugin that provides a coding powered by IA feature.
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -10,7 +10,6 @@ return {
     },
     config = function()
       local map = LazyVim.safe_keymap_set
-
       require("codecompanion").setup({
         strategies = {
           chat = {
@@ -30,27 +29,31 @@ return {
               },
               schema = {
                 model = {
-                  default = "qwen-max", -- define llm model to be used
+                  default = "qwen-max",
                 },
                 temperature = {
-                  order = 2,
-                  mapping = "parameters",
-                  type = "number",
-                  optional = true,
                   default = 0,
                 },
               },
             })
           end,
-        },
-        display = {
-          chat = {
-            -- Change the default icons
-            icons = {
-              pinned_buffer = "📌",
-              watched_buffer = "👀 ",
-            },
-          },
+          grok = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "grok",
+              env = {
+                url = "https://api.x.ai",
+                api_key = "GROK_API_KEY",
+              },
+              schema = {
+                model = {
+                  default = "grok-2-latest",
+                },
+                temperature = {
+                  default = 0,
+                },
+              },
+            })
+          end,
         },
       })
 
@@ -64,11 +67,11 @@ return {
       map("n", "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "Open a new IA prompter" })
     end,
   },
-  -- Plugin: avante.nvim
-  -- Repository: https://github.com/yetone/avante.nvim
-  -- Description: A Neovim plugin for coding powered by AI.
-  ---@class AvanteConflictHighlights
   {
+    -- Plugin: avante.nvim
+    -- Repository: https://github.com/yetone/avante.nvim
+    -- Description: A Neovim plugin for coding powered by AI.
+    ---@class AvanteConflictHighlights
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false,
