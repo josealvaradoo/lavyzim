@@ -25,20 +25,35 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      toggle = { enabled = true },
-      bigfile = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      notifier = { enabled = true },
-      quickfile = { enabled = true },
-      scroll = { enabled = false },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-      zen = { enabled = true },
-      image = { enabled = false },
+      toggle = {},
+      bigfile = {},
+      indent = {},
+      input = {},
+      notify = {},
+      notifier = {},
+      quickfile = {},
+      statuscolumn = {},
+      words = {},
+      zen = {},
+      explorer = {},
+      ---@class snacks.picker.Config
+      picker = {
+        prompt = " ",
+        sources = {},
+        focus = "input",
+        ui_select = true,
+        matcher = {
+          fuzzy = true,
+          smartcase = true,
+          ignorecase = true,
+          filename_bonus = true,
+        },
+        defaults = {
+          no_header = true,
+        },
+      },
       ---@class snacks.dashboard.Config
       dashboard = {
-        enabled = true,
         preset = {
           header = header,
         },
@@ -77,6 +92,20 @@ return {
           Snacks.zen.zoom()
         end,
         desc = "Toggle zoom",
+      },
+      {
+        "<leader>e",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "File Explorer",
+      },
+      {
+        "<leader><space>",
+        function()
+          Snacks.picker.smart()
+        end,
+        desc = "Smart Find Files",
       },
     },
     init = function()

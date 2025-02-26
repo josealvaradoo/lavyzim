@@ -3,48 +3,18 @@ return {
     -- Plugin: oil.nvim
     -- URL: https://github.com/stevearc/oil.nvim
     -- Description: A file explorer which lets you edit your filesystem like a buffer
-    "stevearc/oil.nvim",
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    enabled = true,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("oil").setup()
-      local map = LazyVim.safe_keymap_set
-
-      map("n", "<leader>e", ":Oil<cr>", { desc = "Oil" })
-    end,
-  },
-  {
-    -- Plugin: fzf-lua
-    -- URL: https://github.com/ibhagwan/fzf-lua
-    -- Description: Lua bindings for fzf
-    "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      defaults = {
-        no_header = true,
-      },
-      winopts = {
-        height = 0.8,
-        width = 0.8,
-        border = "rounded",
-        title = nil,
-        treesitter = {
-          enabled = true,
-          fzf_colors = { ["hl"] = "-1:reverse", ["hl+"] = "-1:reverse" },
-        },
-        preview = {
-          layout = "flex",
-          scrollbar = "border",
-          horizontal = "right:65%",
-          winopts = {
-            number = false,
-          },
-        },
-      },
-    },
+    -- "stevearc/oil.nvim",
+    -- ---@module 'oil'
+    -- ---@type oil.SetupOpts
+    -- opts = {},
+    -- enabled = true,
+    -- dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- config = function()
+    --   require("oil").setup()
+    --   local map = LazyVim.safe_keymap_set
+    --
+    --   -- map("n", "<leader>e", ":Oil<cr>", { desc = "Oil" })
+    -- end,
   },
   {
     -- Plugin: mini.hipatterns
