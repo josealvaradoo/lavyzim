@@ -3,18 +3,58 @@ return {
     -- Plugin: oil.nvim
     -- URL: https://github.com/stevearc/oil.nvim
     -- Description: A file explorer which lets you edit your filesystem like a buffer
-    -- "stevearc/oil.nvim",
-    -- ---@module 'oil'
-    -- ---@type oil.SetupOpts
-    -- opts = {},
-    -- enabled = true,
-    -- dependencies = { "nvim-tree/nvim-web-devicons" },
-    -- config = function()
-    --   require("oil").setup()
-    --   local map = LazyVim.safe_keymap_set
-    --
-    --   -- map("n", "<leader>e", ":Oil<cr>", { desc = "Oil" })
-    -- end,
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    ---@type oil.SetupOpts
+    opts = {
+      float = {
+        enabled = true, -- Activa el modo flotante
+        max_width = 0.8, -- Ancho máximo relativo (80% del ancho de la ventana)
+        max_height = 0.8, -- Alto máximo relativo (80% de la altura de la ventana)
+        border = "rounded", -- Estilo del borde (puede ser "none", "single", "double", "rounded", etc.)
+        winblend = 0, -- Transparencia (0 significa sin transparencia)
+      },
+      keymaps = {
+        ["gp"] = "actions.preview",
+      },
+    },
+    config = function(_, opts)
+      require("oil").setup(opts)
+      local map = LazyVim.safe_keymap_set
+
+      map("n", "<leader>e", ":lua require('oil').open_float('.')<CR>", { desc = "Oil" })
+    end,
+  },
+  {
+    -- Plugin: fzf-lua
+    -- URL: https://github.com/ibhagwan/fzf-lua
+    -- Description: Lua bindings for fzf
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      defaults = {
+        no_header = true,
+      },
+      winopts = {
+        height = 0.8,
+        width = 0.8,
+        border = "rounded",
+        title = nil,
+        treesitter = {
+          enabled = true,
+          fzf_colors = { ["hl"] = "-1:reverse", ["hl+"] = "-1:reverse" },
+        },
+        preview = {
+          layout = "flex",
+          scrollbar = "border",
+          horizontal = "right:65%",
+          winopts = {
+            number = false,
+          },
+        },
+      },
+    },
   },
   {
     -- Plugin: mini.hipatterns

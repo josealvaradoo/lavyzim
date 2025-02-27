@@ -35,23 +35,6 @@ return {
       statuscolumn = {},
       words = {},
       zen = {},
-      explorer = {},
-      ---@class snacks.picker.Config
-      picker = {
-        prompt = " ",
-        sources = {},
-        focus = "input",
-        ui_select = true,
-        matcher = {
-          fuzzy = true,
-          smartcase = true,
-          ignorecase = true,
-          filename_bonus = true,
-        },
-        defaults = {
-          no_header = true,
-        },
-      },
       ---@class snacks.dashboard.Config
       dashboard = {
         preset = {
@@ -92,20 +75,6 @@ return {
           Snacks.zen.zoom()
         end,
         desc = "Toggle zoom",
-      },
-      {
-        "<leader>e",
-        function()
-          Snacks.explorer()
-        end,
-        desc = "File Explorer",
-      },
-      {
-        "<leader><space>",
-        function()
-          Snacks.picker.smart()
-        end,
-        desc = "Smart Find Files",
       },
     },
     init = function()
