@@ -11,6 +11,9 @@ return {
     config = function()
       local map = LazyVim.safe_keymap_set
       require("codecompanion").setup({
+        opts = {
+          show_defaults = false,
+        },
         strategies = {
           chat = {
             adapter = "qwen",
@@ -54,6 +57,14 @@ return {
               },
             })
           end,
+        },
+        display = {
+          chat = {
+            window = {
+              layout = "float",
+            },
+            start_in_insert_mode = true,
+          },
         },
       })
 
