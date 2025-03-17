@@ -17,6 +17,45 @@ return {
         strategies = {
           chat = {
             adapter = "qwen",
+            icons = {
+              pinned_buffer = " ",
+              watched_buffer = "👀 ",
+            },
+            slash_commands = {
+              ["file"] = {
+                callback = "strategies.chat.slash_commands.file",
+                description = "Select a file using fzf lua",
+                opts = {
+                  provider = "snacks",
+                  contains_code = true,
+                },
+              },
+              ["buffer"] = {
+                callback = "strategies.chat.slash_commands.buffer",
+                description = "Select a buffer using fzf lua",
+                opts = {
+                  provider = "snacks",
+                  contains_code = true,
+                },
+              },
+              ["git_files"] = {
+                description = "List git files",
+                ---@param chat CodeCompanion.Chat
+                callback = function(chat)
+                  local handle = io.popen("git ls-files")
+                  if handle ~= nil then
+                    local result = handle:read("*a")
+                    handle:close()
+                    chat:add_reference({ content = result }, "git", "<git_files>")
+                  else
+                    return vim.notify("No git files available", vim.log.levels.INFO, { title = "CodeCompanion" })
+                  end
+                end,
+                opts = {
+                  contains_code = false,
+                },
+              },
+            },
           },
           inline = {
             adapter = "qwen",
@@ -58,14 +97,14 @@ return {
             })
           end,
         },
-        display = {
-          chat = {
-            window = {
-              layout = "float",
-            },
-            start_in_insert_mode = true,
-          },
-        },
+        -- display = {
+        --   chat = {
+        --     intro_message = "Welcome to CodeCompanion ✨! Press ? for options",
+        --     window = {
+        --       layout = "float",
+        --     },
+        --   },
+        -- },
       })
 
       map("n", "<leader>a", "", { desc = "Code Companion IA" })
