@@ -1,5 +1,4 @@
 -- Build system file that is used to build projects on c++
-
 local format_group = vim.api.nvim_create_augroup("FormatGroup", { clear = true })
 
 -- Function to disable autoformatting for specific files
@@ -16,4 +15,12 @@ vim.api.nvim_create_autocmd("BufRead", {
   callback = disable_autoformat,
 })
 
-return {}
+return {
+  {
+    "Mythos-404/xmake.nvim",
+    version = "*",
+    lazy = true,
+    event = "BufReadPost",
+    config = true,
+  },
+}
