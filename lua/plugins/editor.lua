@@ -8,13 +8,6 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     ---@type oil.SetupOpts
     opts = {
-      float = {
-        enabled = true, -- Activa el modo flotante
-        max_width = 0.8, -- Ancho máximo relativo (80% del ancho de la ventana)
-        max_height = 0.8, -- Alto máximo relativo (80% de la altura de la ventana)
-        border = "rounded", -- Estilo del borde (puede ser "none", "single", "double", "rounded", etc.)
-        winblend = 0, -- Transparencia (0 significa sin transparencia)
-      },
       keymaps = {
         ["gp"] = "actions.preview",
       },
@@ -23,7 +16,7 @@ return {
       require("oil").setup(opts)
       local map = LazyVim.safe_keymap_set
 
-      map("n", "<leader>e", ":lua require('oil').open_float('.')<CR>", { desc = "Oil" })
+      map("n", "<leader>e", ":Oil<CR>", { desc = "Oil" })
     end,
   },
   {
