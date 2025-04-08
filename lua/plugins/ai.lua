@@ -16,7 +16,7 @@ return {
         },
         strategies = {
           chat = {
-            adapter = "anthropic",
+            adapter = "deepseek",
             icons = {
               pinned_buffer = " ",
               watched_buffer = "👀 ",
