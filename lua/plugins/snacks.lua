@@ -1,3 +1,5 @@
+local yummy = "chafa ~/.config/nvim/lua/assets/dashboard/yummy.png --size 60x27 --format symbols --align center"
+local wink = "chafa ~/.config/nvim/lua/assets/dashboard/wink.png --size 50x27 --format symbols --align center"
 local header = [[
           
 
@@ -38,7 +40,7 @@ return {
       ---@class snacks.dashboard.Config
       dashboard = {
         preset = {
-          header = header,
+          header = [[]], -- use [[]] when you want to use a custom header
         },
         formats = {
           header = {
@@ -49,7 +51,18 @@ return {
         sections = {
           {
             section = "header",
-            padding = 4,
+            padding = 0,
+            enabled = true, -- enable for yummy
+          },
+          {
+            pane = 1,
+            {
+              section = "terminal",
+              cmd = yummy,
+              height = 15, -- 15 for yummy | 20 for wink
+              width = 60,
+              padding = 0,
+            },
           },
           {
             pane = 2,
