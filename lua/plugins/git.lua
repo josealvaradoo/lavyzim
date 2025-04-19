@@ -1,5 +1,16 @@
 return {
   {
+    -- Plugin: akinsho/git-conflict.nvim
+    -- URL: https://github.com/akinsho/git-conflict.nvim
+    -- Description: Visualize and solve conflicts in nvim.
+    "akinsho/git-conflict.nvim",
+    name = "git-conflict",
+    version = "*",
+    config = true,
+    lazy = true,
+    event = "VeryLazy",
+  },
+  {
     -- Plugin: lewis6991/gitsigns.nvim
     -- URL: https://github.com/lewis6991/gitsigns.nvim
     -- Description: Provides Git integration for Neovim.
