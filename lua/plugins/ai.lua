@@ -22,22 +22,6 @@ return {
               watched_buffer = "👀 ",
             },
             slash_commands = {
-              ["file"] = {
-                callback = "strategies.chat.slash_commands.file",
-                description = "Select a file using fzf lua",
-                opts = {
-                  provider = "snacks",
-                  contains_code = true,
-                },
-              },
-              ["buffer"] = {
-                callback = "strategies.chat.slash_commands.buffer",
-                description = "Select a buffer using fzf lua",
-                opts = {
-                  provider = "snacks",
-                  contains_code = true,
-                },
-              },
               ["git_files"] = {
                 description = "List git files",
                 ---@param chat CodeCompanion.Chat
@@ -62,6 +46,15 @@ return {
           },
         },
         adapters = {
+          deepseek = function()
+            return require("codecompanion.adapters").extend("deepseek", {
+              schema = {
+                model = {
+                  default = "deepseek-chat",
+                },
+              },
+            })
+          end,
           qwen = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               name = "qwen",
