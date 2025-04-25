@@ -1,22 +1,22 @@
 return {
   -- Config autocomplete and code suggestions like IA Copilot
-  {
-    -- Plugin: Supermaven Nvim
-    -- URL: https://github.com/supermaven-inc/supermaven-nvim
-    -- Description: Supermaven is a fastest alternative to Github Copilot
-    "supermaven-inc/supermaven-nvim",
-    lazy = true,
-    event = "VeryLazy",
-    config = function()
-      require("supermaven-nvim").setup({
-        keymaps = {
-          accept_suggestion = "<Tab>",
-          clear_suggestion = "<C-]>",
-          accept_word = "<C-j>",
-        },
-      })
-    end,
-  },
+  -- {
+  --   -- Plugin: Supermaven Nvim
+  --   -- URL: https://github.com/supermaven-inc/supermaven-nvim
+  --   -- Description: Supermaven is a fastest alternative to Github Copilot
+  --   "supermaven-inc/supermaven-nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("supermaven-nvim").setup({
+  --       keymaps = {
+  --         accept_suggestion = "<Tab>",
+  --         clear_suggestion = "<C-]>",
+  --         accept_word = "<C-j>",
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     -- Plugin: nvim-cmp
     -- URL: https://github.com/hrsh7th/nvim-cmp
@@ -27,7 +27,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "supermaven-inc/supermaven-nvim",
     },
     opts = function(_, opts)
       local cmp = require("cmp")
@@ -49,7 +48,6 @@ return {
         end,
       })
       opts.sources = cmp.config.sources({
-        { name = "supermaven" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
