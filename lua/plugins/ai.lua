@@ -4,6 +4,7 @@ return {
     -- Repository: https://github.com/olimorris/codecompanion.nvim
     -- Description: Code Companion is a plugin that provides a coding powered by IA feature.
     "olimorris/codecompanion.nvim",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
