@@ -12,7 +12,7 @@ return {
         auto_insert_mode = false,
         question_header = "  " .. user .. " ",
         answer_header = "  Copilot",
-        model = "gemini-2.5-pro",
+        model = "claude-sonnet-4",
         window = {
           width = 0.4,
         },
