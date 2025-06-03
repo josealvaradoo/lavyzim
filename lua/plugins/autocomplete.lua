@@ -24,6 +24,7 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
+      "zbirenbaum/copilot-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -48,7 +49,8 @@ return {
         end,
       })
       opts.sources = cmp.config.sources({
-        { name = "nvim_lsp" },
+        { name = "copilot" },
+        { name = "nvim_lsp", group_index = 2 },
         { name = "buffer" },
         { name = "path" },
       })
