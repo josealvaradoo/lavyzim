@@ -3,7 +3,8 @@ return {
     "mistweaverco/kulala.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>R", "", desc = "+Rest" },
+      { "<leader>R", "", desc = "+Kulala" },
+      { "<leader>Ra", "<cmd>lua require('kulala').run_all()<cr>", desc = "Run all requests" },
       { "<leader>Rb", "<cmd>lua require('kulala').scratchpad()<cr>", desc = "Open scratchpad" },
       { "<leader>Rc", "<cmd>lua require('kulala').copy()<cr>", desc = "Copy as cURL" },
       { "<leader>RC", "<cmd>lua require('kulala').from_curl()<cr>", desc = "Paste from curl" },
