@@ -5,6 +5,7 @@ return {
     -- Description: A IA assistant by Github Copilot.
     "CopilotC-Nvim/CopilotChat.nvim",
     cmd = "CopilotChat",
+    enabled = true,
     opts = function()
       local user = vim.env.USER or "User"
       user = user:sub(1, 1):upper() .. user:sub(2)
@@ -50,7 +51,7 @@ return {
         },
         strategies = {
           chat = {
-            adapter = "deepseek",
+            adapter = "copilot",
             icons = {
               pinned_buffer = " ",
               watched_buffer = "👀 ",
