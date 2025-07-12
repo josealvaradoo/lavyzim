@@ -37,6 +37,10 @@ return {
       statuscolumn = {},
       words = {},
       zen = {},
+      picker = {
+        enabled = true,
+        ui_select = true,
+      },
       ---@class snacks.dashboard.Config
       dashboard = {
         preset = {
