@@ -4,6 +4,9 @@ return {
     -- Repository: https://github.com/CopilotC-Nvim/CopilotChat.nvim
     -- Description: A IA assistant by Github Copilot.
     "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
     cmd = "CopilotChat",
     enabled = true,
     opts = function()
@@ -12,24 +15,33 @@ return {
       return {
         auto_insert_mode = false,
         question_header = "  " .. user .. " ",
-        answer_header = "  Copilot",
         model = "claude-sonnet-4",
+        temperature = 0.1,
         window = {
           width = 0.4,
+          title = "  IA Assistant",
         },
+        headers = {
+          user = "  " .. user .. " ",
+          assistant = "  Copilot ",
+          tool = "🔧 Tool: ",
+        },
+        separator = "━━",
+        show_folds = false,
       }
     end,
     config = function(_, opts)
       local chat = require("CopilotChat")
 
+      -- Auto-command to customize chat buffer behavior
       vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-chat",
+        pattern = "copilot-*",
         callback = function()
           vim.opt_local.relativenumber = false
           vim.opt_local.number = false
+          vim.opt_local.conceallevel = 0
         end,
       })
-
       chat.setup(opts)
     end,
   },
