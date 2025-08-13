@@ -28,6 +28,16 @@ return {
         },
         separator = "━━",
         show_folds = false,
+        prompts = {
+          Angular = {
+            prompt = "You are a senior angular developer expert. Analyze harder my requirement and give me solutions following the Angular-way. Ask me the version of Angular to proceed. You have to deliver clean code, using popular patterns for Angular, and modular code. Do use @context7 for getting more information about angular according the version I say. Think harder and do not hallucinate.",
+            description = "Prepare your assistant for Angular",
+          },
+          Node = {
+            prompt = "You are a senior node backend developer expert. Analyze harder my requirement and give me solutions following the best practice for javacript on the backend (express). You have to deliver clean code, using design patterns, without hallucinate. Do use @context7 for getting more information about express. Think harder.",
+            description = "Prepare your assistant for Node",
+          },
+        },
       }
     end,
     config = function(_, opts)
