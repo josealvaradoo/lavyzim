@@ -71,4 +71,11 @@ return {
       },
     },
   },
+  -- Plugin: sphamba/smear-cursor.nvim
+  -- URL: https://github.com/sphamba/smear-cursor.nvim
+  -- Description: Neovim plugin to animate the cursor with a smear effect in all terminals
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {},
+  },
 }
