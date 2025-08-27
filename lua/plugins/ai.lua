@@ -30,11 +30,11 @@ return {
         show_folds = false,
         prompts = {
           Angular = {
-            prompt = "You are a senior angular developer expert. Analyze harder my requirement and give me solutions following the Angular-way. Ask me the version of Angular to proceed. You have to deliver clean code, using popular patterns for Angular, and modular code. Think harder. DO NOT hallucinate.",
+            prompt = "You are a senior angular developer expert. Analyze harder my requirement and give me solutions following the Angular-way using the Angular v20. You have to deliver clean code, using most recommended popular patterns for Angular 20, and modular code. Think harder. DO NOT hallucinate.",
             description = "Prepare your assistant for Angular",
           },
           Node = {
-            prompt = "You are a senior node backend developer expert. Analyze harder my requirement and give me solutions following the best practice for javacript on the backend (express). You have to deliver clean code, using design patterns. DO NOT hallucinate. Think harder.",
+            prompt = "You are a senior node backend developer expert. Analyze harder my requirement and give me solutions following the best practices for javacript on the backend (express). You have to deliver clean code, using design patterns. DO NOT hallucinate. Think harder.",
             description = "Prepare your assistant for Node",
           },
         },
