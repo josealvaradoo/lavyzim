@@ -1,0 +1,36 @@
+local _mappings = {
+  add = "gsa", -- Add surrounding in Normal and Visual modes
+  delete = "gsd", -- Delete surrounding
+  find = "gsf", -- Find surrounding (to the right)
+  find_left = "gsF", -- Find surrounding (to the left)
+  highlight = "gsh", -- Highlight surrounding
+  replace = "gsr", -- Replace surrounding
+  update_n_lines = "gsn", -- Update `n_lines`
+}
+
+return {
+  { "nvim-mini/mini.nvim", version = false },
+  {
+    "echasnovski/mini.surround",
+    event = "VeryLazy",
+    keys = function(_, keys)
+      -- Populate the keys based on the user's options
+      local mappings = {
+        { _mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
+        { _mappings.delete, desc = "Delete Surrounding" },
+        { _mappings.find, desc = "Find Right Surrounding" },
+        { _mappings.find_left, desc = "Find Left Surrounding" },
+        { _mappings.highlight, desc = "Highlight Surrounding" },
+        { _mappings.replace, desc = "Replace Surrounding" },
+        { _mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+      }
+      mappings = vim.tbl_filter(function(m)
+        return m[1] and #m[1] > 0
+      end, mappings)
+      return vim.list_extend(mappings, keys)
+    end,
+    opts = {
+      mappings = _mappings,
+    },
+  },
+}
