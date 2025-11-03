@@ -9,7 +9,32 @@ return {
     },
     config = function()
       local map = LazyVim.safe_keymap_set
-      require("flutter-tools").setup({})
+
+      -- Function to load .env file
+      local function load_env_file(file_path)
+        local env_vars = {}
+        local file = io.open(file_path, "r")
+        if file then
+          for line in file:lines() do
+            if line:match("^[^#]") and line:match("=") then
+              local key, value = line:match("([^=]+)=(.+)")
+              if key and value then
+                env_vars[key] = value
+              end
+            end
+          end
+          file:close()
+        end
+        return env_vars
+      end
+
+      -- Load environment variables
+      local env_file = vim.fn.getcwd() .. "/.env"
+      local env_vars = load_env_file(env_file)
+
+      require("flutter-tools").setup({
+        dart_define = env_vars, -- Use loaded .env variables
+      })
 
       map("n", "<leader>r", "", { desc = "Flutter" })
       map("n", "<leader>rr", ":FlutterRun<cr>", { desc = "Flutter Run" })
