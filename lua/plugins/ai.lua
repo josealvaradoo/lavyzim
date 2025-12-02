@@ -16,7 +16,7 @@ return {
       return {
         auto_insert_mode = false,
         question_header = "  " .. user .. " ",
-        model = "gpt-5.1-codex",
+        model = "claude-opus-4.5",
         temperature = 0.1,
         window = {
           width = 0.4,
