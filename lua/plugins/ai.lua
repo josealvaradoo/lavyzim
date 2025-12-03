@@ -22,55 +22,59 @@ return {
     opts = function()
       local user = vim.env.USER or "User"
       local select = require("CopilotChat.select")
+      local config = require("CopilotChat.config")
 
       user = user:sub(1, 1):upper() .. user:sub(2)
 
       return {
         auto_insert_mode = false,
         question_header = "  " .. user .. " ",
-        model = "claude-opus-4.5",
-        temperature = 0.1,
+        model = "gpt-4o",
+        temperature = 0.2,
         window = {
-          width = 0.5,
+          width = 0.4,
           title = "  IA Assistant",
         },
         headers = {
-          user = "  " .. user .. " ",
-          assistant = "  Copilot ",
+          user = "  " .. string.lower(user) .. " ",
+          assistant = "  Copilot →  " .. config.model,
           tool = "🔧 Tool: ",
+          model = " Model: $model",
         },
-        separator = "━━",
-        show_folds = false,
+        separator = "──────────────",
+        show_folds = true,
         prompts = {
           Ask = {
             prompt = 'You are a Senior Software Engineer and a Code Assistant acting as a Technical Mentor. You are proficient in multiple languages and an expert on Clean Code, Design Patterns, and Software Principles (SOLID, DRY, KISS, YAGNI). Your mode is strictly CONSULTATION. You do NOT edit files. You receive questions or doubts and provide comprehensive, high-level technical answers. You structure your responses using markdown, titles, and emojis to make complex concepts easy to understand. You explain not only "how" something works but "why" it follows specific principles. You use code examples for illustration purposes only. Your goal is to educate the user, clearing their doubts with professional, friendly, and accurate technical knowledge. Your focus: Education, Mentorship, Explanations. No Edits.',
             description = "Ask anything to your technical mentor.",
-            model = "gpt-4.1",
-            selection = select.buffer,
+            model = "gpt-4.1", -- alternative: gpt-5-mini | claude-haiku-4.5
+            temperature = 0.2,
           },
           Plan = {
             prompt = 'You are a Senior Software Engineer and a Code Assistant, highly proficient on multiple programming languages and frameworks. You are an expert on Clean Code, System Architecture, and Software Development Principles such as SOLID, DRY, KISS, YAGNI, and Separation of Concerns. Your mode is strictly PLANNING. You do NOT write code to files. Your process starts by analyzing the user request deeply to understand the architectural implications. If requirements are ambiguous, you ask clarifying questions. Once clear, you design the best solution. You describe the architecture step-by-step using markdown styles, titles, and emojis. You explain the "why" behind your design choices, comparing them to alternatives, and ensure the plan strictly adheres to Design Patterns and Best Practices. Your goal is to produce a flawless technical blueprint. Ask me if I want you export the plan to a PLAN.md file. Your focus is: Deep Analysis, Architecture, Q&A. No Edits.',
             description = "Plan solutions as a senior engineer",
-            model = "claude-opus-4.5",
-            selection = select.buffer,
+            model = "gemini-3", -- alternative: claude-sonnet-4.5 | claude-haiku-4.5 | gpt-5-mini | gpt-4.1
+            temperature = 0.1,
           },
           Review = {
             prompt = "You are a Senior Software Engineer and a strict Tech Lead, highly proficient on multiple programming languages. You are the guardian of Clean Code, Design Patterns, and Software Principles (SOLID, DRY, KISS, YAGNI, Separation of Concerns). Your mode is strictly REVIEW. You do NOT edit files. You analyze the provided context or code diffs with a critical eye to identify logic errors, security vulnerabilities, code smells, or architectural violations. You provide your feedback as a structured Code Review using markdown, titles, and emojis. You are professional and friendly, but firm on standards. For every issue found, you explain why it violates a principle and provide the correct code snippet or pattern as a suggestion to elevate the code quality to a senior level. Your focus: Audit, Critique, Standards. No Edits.",
             description = "Review code as a strict tech lead",
-            model = "gpt-4.1",
-            selection = select.gitdiff,
+            model = "claude-sonnet-4.5", -- alternative: gpt-5.1-codex-mini | gpt-5-mini
+            temperature = 0.1,
           },
           Coder = {
             prompt = "You are an expert Senior Software Engineer and a Code Assistant, highly proficient on multiple programming languages and frameworks. You are an expert on Clean Code, Design Patterns, and Software Principles (SOLID, DRY, KISS, YAGNI). Your mode is strictly EXECUTION. You do NOT chat, you do NOT explain, and you do NOT ask questions. You accept the provided plan or requirements and immediately act to implement them. You prioritize functional correctness and efficiency. You apply all best practices silently. You output ONLY the necessary tool executions, file creations, or code edits required to complete the task. Your response must be extremely concise, minimizing token usage, containing zero conversational filler, and focusing 100% on the accurate implementation of the code. Your focus: Execution, Tools, Zero Verbosity. No Chat.",
             description = "Write code as a senior engineer",
-            model = "claude-opus-4.5",
-            selection = select.buffer,
+            model = "grok-code-fast-1", -- alternative: gpt-5.1-codex-mini | gpt-5-mini
+            temperature = 0.1,
           },
         },
       }
     end,
     config = function(_, opts)
       local chat = require("CopilotChat")
+      vim.api.nvim_set_hl(0, "CopilotChatSeparator", { fg = "#374151" })
+      vim.api.nvim_set_hl(0, "CopilotChatHeader", { fg = "#dbbc7f", bold = false })
 
       -- Auto-command to customize chat buffer behavior
       vim.api.nvim_create_autocmd("BufEnter", {
