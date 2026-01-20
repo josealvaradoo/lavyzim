@@ -1,5 +1,6 @@
 local yummy = "chafa ~/.config/nvim/lua/assets/dashboard/yummy.png --size 60x27 --format symbols --align center"
 local wink = "chafa ~/.config/nvim/lua/assets/dashboard/wink.png --size 50x27 --format symbols --align center"
+local dtmf = "chafa ~/.config/nvim/lua/assets/dashboard/dbmf.jpg --size 30x30 --format symbols --align center -c full"
 local header = [[
           
 
@@ -62,8 +63,8 @@ return {
             pane = 1,
             {
               section = "terminal",
-              cmd = yummy,
-              height = 15, -- 15 for yummy | 20 for wink
+              cmd = dtmf, -- change to yummy or wink
+              height = 18, -- 15 for yummy | 20 for wink
               width = 60,
               padding = 0,
             },
