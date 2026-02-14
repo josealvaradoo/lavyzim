@@ -1,25 +1,5 @@
-local yummy = "chafa ~/.config/nvim/lua/assets/dashboard/yummy.png --size 60x27 --format symbols --align center"
-local wink = "chafa ~/.config/nvim/lua/assets/dashboard/wink.png --size 50x27 --format symbols --align center"
-local dtmf = "chafa ~/.config/nvim/lua/assets/dashboard/dbmf.jpg --size 30x30 --format symbols --align center -c full"
-local header = [[
-          
-
-
-    ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▒        ▒▓▓▓▓▒  
-    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒    ▒▓▓▓▓▓       ▒▓▓▓▓▒   
-   ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒      ▓▓▓▓▓▓▒▒▒▒▒▓▓▓▓▓▒    
-                         ▓▓▓▓▓▓▓▓▓▓▓▓▓▒      
-                           ▒▒▒▒▒▒▒▒          
-    ▒▒▒▒▒▒                                   
-   ▓▓▓▓▓▓▓                                   
-   ▓▓▓▓▓▓▓▒               ▒▒▒▒▒▒▒            
-   ▒▓▓▓▓▓▓▓▒            ▒▓▓▓▓▓▓▓▒            
-    ▒▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▒              
-     ▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                
-       ▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒                   
-                           
-
-                           ]]
+local image =
+  "chafa ~/.config/nvim/lua/assets/dashboard/github-copilot.png --size 30x30 --format symbols --align center -c full"
 
 return {
   {
@@ -63,8 +43,8 @@ return {
             pane = 1,
             {
               section = "terminal",
-              cmd = dtmf, -- change to yummy or wink
-              height = 18, -- 15 for yummy | 20 for wink
+              cmd = image,
+              height = 18,
               width = 60,
               padding = 0,
             },
