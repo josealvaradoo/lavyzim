@@ -3,7 +3,9 @@ return {
     -- Plugin: CopilotChat.nvim
     -- Repository: https://github.com/CopilotC-Nvim/CopilotChat.nvim
     -- Description: A IA assistant by Github Copilot.
-    "CopilotC-Nvim/CopilotChat.nvim",
+    "josealvaradoo/CopilotChat.nvim",
+    -- dir = "~/Dev/lua/CopilotChat.nvim",
+    branch = "dev",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
       { "nvim-treesitter/nvim-treesitter" },
@@ -21,7 +23,7 @@ return {
     },
     opts = function()
       local user = vim.env.USER or "User"
-      local config = require("CopilotChat.config")
+      local model = require("CopilotChat.config").model
 
       user = user:sub(1, 1):upper() .. user:sub(2)
 
@@ -36,7 +38,7 @@ return {
         },
         headers = {
           user = "  " .. string.lower(user) .. " ",
-          assistant = "  Copilot →  " .. config.model,
+          assistant = "  Copilot →  " .. model,
           tool = "🔧 Tool: ",
           model = " Model: $model",
         },
