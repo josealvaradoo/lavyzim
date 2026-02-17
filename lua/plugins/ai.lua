@@ -1,5 +1,59 @@
 return {
   {
+    "olimorris/codecompanion.nvim",
+    version = "^18.0.0",
+    dependencies = {
+      "ravitemer/mcphub.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      local map = LazyVim.safe_keymap_set
+
+      require("codecompanion").setup({
+        interactions = {
+          chat = {
+            adapter = "openrouter",
+          },
+        },
+        adapters = {
+          http = {
+            openrouter = function()
+              return require("codecompanion.adapters").extend("openai_compatible", {
+                env = {
+                  url = "https://openrouter.ai/api",
+                  api_key = "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",
+                  chat_url = "/v1/chat/completions",
+                },
+                schema = {
+                  model = {
+                    default = "minimax/minimax-m2.5",
+                    choices = {
+                      ["minimax/minimax-m2.5"] = {},
+                      ["moonshotai/kimi-k2.5"] = {},
+                      ["qwen/qwen3.5-plus-02-15"] = {},
+                      ["deepseek/deepseek-v3.2"] = {},
+                      ["openai/gpt-oss-120b:free"] = {},
+                    },
+                  },
+                },
+              })
+            end,
+          },
+        },
+      })
+
+      map("n", "<leader>a", "", { desc = "Code Companion IA" })
+      map({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+      -- Chat
+      map("n", "<leader>aa", "<cmd>CodeCompanionChat<cr>", { desc = "Open chat" })
+      map("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle chat" })
+      map("v", "<leader>as", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add selected code to chat" })
+      -- Inline
+      map("n", "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "Open a new IA prompter" })
+    end,
+  },
+  {
     -- Plugin: CopilotChat.nvim
     -- Repository: https://github.com/CopilotC-Nvim/CopilotChat.nvim
     -- Description: A IA assistant by Github Copilot.
@@ -12,7 +66,7 @@ return {
     },
     cmd = "CopilotChat",
     build = "make tiktoken",
-    enabled = true,
+    enabled = false,
     -- ⌨️ Keybindings (The "Senior" Workflow)
     keys = {
       { "<leader>aa", ":CopilotChatToggle<CR>", desc = "🤖 Toggle Chat" },
