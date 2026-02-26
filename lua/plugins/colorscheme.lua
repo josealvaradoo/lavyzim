@@ -85,7 +85,7 @@ return {
     -- URL: https://github.com/neanias/everforest-nvim
     -- Description: Provides a everforest theme for Neovim.
     "neanias/everforest-nvim",
-    priority = 1000,
+    -- priority = 1000,
     version = false,
     lazy = false,
     ---@class Config
@@ -100,9 +100,22 @@ return {
     end,
   },
   {
+    -- Plugin: zenbones-theme/zenbones.nvim
+    -- URL: https://github.com/zenbones-theme/zenbones.nvim
+    -- Description: Provides a zenbone theme for Neovim.
+    "zenbones-theme/zenbones.nvim",
+    dependencies = "rktjmp/lush.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.opt.background = "dark"
+      -- vim.o.guifont = "Lilex Nerd Font:h12"
+    end,
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "zenwritten",
     },
   },
 }
