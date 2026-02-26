@@ -1,81 +1,63 @@
-return {
-  {
-    "olimorris/codecompanion.nvim",
-    version = "^18.0.0",
-    dependencies = {
-      "ravitemer/mcphub.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      local map = LazyVim.safe_keymap_set
+local openrouter = function(opts)
+  return {
+    prepare_input = require("CopilotChat.config.providers").copilot.prepare_input,
 
-      require("codecompanion").setup({
-        interactions = {
-          chat = {
-            adapter = "openrouter",
-          },
-        },
-        adapters = {
-          http = {
-            openrouter = function()
-              return require("codecompanion.adapters").extend("openai_compatible", {
-                env = {
-                  url = "https://openrouter.ai/api",
-                  api_key = "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",
-                  chat_url = "/v1/chat/completions",
-                },
-                schema = {
-                  model = {
-                    default = "minimax/minimax-m2.5",
-                    choices = {
-                      ["minimax/minimax-m2.5"] = {},
-                      ["moonshotai/kimi-k2.5"] = {},
-                      ["qwen/qwen3.5-plus-02-15"] = {},
-                      ["deepseek/deepseek-v3.2"] = {},
-                      ["openai/gpt-oss-120b:free"] = {},
-                    },
-                  },
-                },
-              })
-            end,
-          },
-        },
-      })
-
-      map("n", "<leader>a", "", { desc = "Code Companion IA" })
-      map({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-      -- Chat
-      map("n", "<leader>aa", "<cmd>CodeCompanionChat<cr>", { desc = "Open chat" })
-      map("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle chat" })
-      map("v", "<leader>as", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add selected code to chat" })
-      -- Inline
-      map("n", "<leader>ai", "<cmd>CodeCompanion<cr>", { desc = "Open a new IA prompter" })
+    prepare_output = function(response)
+      -- Filter out reasoning/thinking from the response
+      if type(response) == "table" and response.choices then
+        for _, choice in ipairs(response.choices) do
+          if choice.message and choice.message.reasoning then
+            choice.message.reasoning = nil
+          end
+        end
+      end
+      return require("CopilotChat.config.providers").copilot.prepare_output(response, opts)
     end,
-  },
+
+    get_url = function()
+      return "https://openrouter.ai/api/v1/chat/completions"
+    end,
+
+    get_headers = function()
+      return {
+        ["Authorization"] = "Bearer " .. (os.getenv("OPENROUTER_API_KEY") or ""),
+        ["HTTP-Referer"] = "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
+        ["X-Title"] = "CopilotChat.nvim",
+      }
+    end,
+
+    get_models = function()
+      return {
+        { id = "minimax/minimax-m2.5", name = "MiniMax M2.5" },
+        { id = "moonshotai/kimi-k2.5", name = "Kimi K2.5" },
+        { id = "qwen/qwen3.5-plus-02-15", name = "Qwen 3.5 Plus" },
+        { id = "deepseek/deepseek-v3.2", name = "DeepSeek 3.2" },
+        { id = "openai/gpt-oss-120b:free", name = "GPT OSS 120b" },
+        { id = "opencode/glm-5-free", name = "GLM 5" },
+      }
+    end,
+  }
+end
+
+return {
   {
     -- Plugin: CopilotChat.nvim
     -- Repository: https://github.com/CopilotC-Nvim/CopilotChat.nvim
     -- Description: A IA assistant by Github Copilot.
-    "josealvaradoo/CopilotChat.nvim",
-    -- dir = "~/Dev/lua/CopilotChat.nvim",
-    branch = "dev",
+    -- "josealvaradoo/CopilotChat.nvim",
+    dir = "~/Dev/lua/CopilotChat.nvim",
+    branch = "feature/ui-confirmation-tool",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
       { "nvim-treesitter/nvim-treesitter" },
     },
     cmd = "CopilotChat",
     build = "make tiktoken",
-    enabled = false,
     -- ⌨️ Keybindings (The "Senior" Workflow)
     keys = {
       { "<leader>aa", ":CopilotChatToggle<CR>", desc = "🤖 Toggle Chat" },
-      -- { "<leader>aq", ":CopilotChatAsk<CR>", desc = "🙋 Ask Mentor" },
-      -- { "<leader>ap", ":CopilotChatPlan<CR>", desc = "🧠 Plan Architecture" },
-      -- { "<leader>ar", ":CopilotChatReview<CR>", desc = "🧐 Code Review (Diff)" },
-      -- { "<leader>ac", ":CopilotChatCoder<CR>", desc = "🔨 Coder (Exec)" },
     },
-    opts = function()
+    opts = function(opts)
       local user = vim.env.USER or "User"
       local model = require("CopilotChat.config").model
 
@@ -86,6 +68,15 @@ return {
         question_header = "  " .. user .. " ",
         model = "gpt-4o",
         temperature = 0.2,
+        providers = {
+          openrouter = openrouter(opts),
+        },
+        permissions = {
+          bash = {
+            ls = "allow",
+            git = "ask",
+          },
+        },
         window = {
           width = 0.4,
           title = "  IA Assistant",
