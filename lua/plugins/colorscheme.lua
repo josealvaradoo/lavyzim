@@ -24,7 +24,7 @@ return {
     -- Description: Provides a catppuccin theme for Neovim.
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = false,
+    enabled = true,
     lazy = true,
     opts = {
       transparent_background = true,
@@ -87,6 +87,7 @@ return {
     "neanias/everforest-nvim",
     -- priority = 1000,
     version = false,
+    enabled = false,
     lazy = false,
     ---@class Config
     config = function()
@@ -106,6 +107,7 @@ return {
     "zenbones-theme/zenbones.nvim",
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
+    enabled = false,
     priority = 1000,
     config = function()
       vim.opt.background = "dark"
@@ -115,7 +117,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "zenwritten",
+      colorscheme = "catppuccin",
     },
   },
 }
