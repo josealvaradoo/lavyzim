@@ -131,6 +131,13 @@ return {
             temperature = 0.1,
             mapping = "<leader>at",
           },
+          Flutter = {
+            prompt = "You are a senior dart developer expert building mobile apps using flutter as framework. You're very strict following the best practices for flutter acording how greatest companies do and validating every aspect against the solid principles and clean code",
+            description = "Flutter engineer",
+            model = "gpt-5.4",
+            temperature = 0.1,
+            mapping = "<leader>af",
+          },
         },
       }
     end,
