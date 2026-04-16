@@ -6,6 +6,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
+      "dart-lang/dart-vim-plugin",
     },
     config = function()
       local map = LazyVim.safe_keymap_set
@@ -47,8 +48,5 @@ return {
       map("n", "<leader>rh", ":FlutterHotReloadApp<cr>", { desc = "Flutter Hot Reload App" })
       map("n", "<leader>re", ":FlutterEmulators<cr>", { desc = "Flutter Emulators" })
     end,
-  },
-  {
-    "dart-lang/dart-vim-plugin",
   },
 }
