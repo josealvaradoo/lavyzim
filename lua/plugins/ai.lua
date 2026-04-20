@@ -45,8 +45,9 @@ return {
     -- Repository: https://github.com/CopilotC-Nvim/CopilotChat.nvim
     -- Description: A IA assistant by Github Copilot.
     -- "josealvaradoo/CopilotChat.nvim",
-    dir = "~/Dev/lua/CopilotChat.nvim",
-    branch = "feature/ui-confirmation-tool",
+    -- dir = "~/Dev/lua/CopilotChat.nvim",
+    -- branch = "feature/ui-confirmation-tool",
+    "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
       { "nvim-treesitter/nvim-treesitter" },
