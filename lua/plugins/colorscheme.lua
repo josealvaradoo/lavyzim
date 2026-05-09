@@ -24,11 +24,11 @@ return {
     -- Description: Provides a catppuccin theme for Neovim.
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = false,
+    enabled = true,
     lazy = true,
     opts = {
       transparent_background = true,
-      flavour = "mocha",
+      flavour = "macchiato",
     },
     integrations = {
       cmp = true, -- Enable integration with nvim-cmp
@@ -87,7 +87,7 @@ return {
     "neanias/everforest-nvim",
     -- priority = 1000,
     version = false,
-    enabled = true,
+    enabled = false,
     lazy = false,
     ---@class Config
     config = function()
@@ -101,13 +101,29 @@ return {
     end,
   },
   {
+    -- Plugin: nvim-dark-islands (local)
+    -- Path: ~/Dev/lua/nvim-dark-islands
+    -- Description: Custom local Dark Islands theme for Neovim.
+    dir = "~/Dev/lua/nvim-dark-islands",
+    name = "dark-islands",
+    lazy = false,
+    enabled = false,
+    priority = 1000,
+    config = function()
+      require("dark-islands").setup({
+        transparent_background = false,
+      })
+      require("dark-islands").load()
+    end,
+  },
+  {
     -- Plugin: zenbones-theme/zenbones.nvim
     -- URL: https://github.com/zenbones-theme/zenbones.nvim
     -- Description: Provides a zenbone theme for Neovim.
     "zenbones-theme/zenbones.nvim",
     dependencies = "rktjmp/lush.nvim",
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
     config = function()
       vim.opt.background = "dark"
@@ -117,7 +133,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "catppuccin",
     },
   },
 }
