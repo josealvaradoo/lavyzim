@@ -16,3 +16,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     })
   end,
 })
+
+-- Remove linter from .env
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sh",
+  callback = function()
+    if vim.fn.expand("%:t"):match("%.env") then
+      vim.diagnostic.enable(false)
+    end
+  end,
+})
+
+-- Remove linter from .env
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.diagnostic.enable(false)
+  end,
+})
